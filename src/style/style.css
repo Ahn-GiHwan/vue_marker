@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  text-decoration: none;
+  font-family: "Maplestory";
+}
+
+body {
+  text-decoration: none;
+  font-family: "Maplestory";
+}
+  
+.router-link-active {
+  font-weight: 900;
+}
