@@ -1,7 +1,9 @@
 const path = require('path')
 const HtmlPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const MiniCss = require('mini-css-extract-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
+const Dotenv = require('dotenv-webpack')
 
 module.exports = (env, options) => {
   console.log(env, options)
@@ -31,24 +33,9 @@ module.exports = (env, options) => {
         {
           test: /\.s?css$/,
           use: [
-            'vue-style-loader',
+            MiniCss.loader,
             'css-loader',
             'postcss-loader',
-            {
-              loader: 'sass-loader',
-              options: {
-                additionalData: `
-                  @use "sass:color";
-                  @use "sass:list";
-                  @use "sass:map";
-                  @use "sass:math";
-                  @use "sass:meta";
-                  @use "sass:selector";
-                  @use "sass:string";
-                  @import "~/scss/_variables";
-                `
-              }
-            }
           ]
         }
       ]
@@ -62,8 +49,13 @@ module.exports = (env, options) => {
           { from: 'static' }
         ]
       }),
-      new VueLoaderPlugin()
+      new VueLoaderPlugin(),
+      new MiniCss(),
+      new Dotenv({
+        systemvars: true,
+      }),
     ],
+    
     devServer: {
       historyApiFallback: true
     }
