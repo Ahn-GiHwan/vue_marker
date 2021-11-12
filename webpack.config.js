@@ -37,7 +37,7 @@ module.exports = (env, options) => {
             'css-loader',
             'postcss-loader',
           ]
-        }
+        },
       ]
     },
     plugins: [
