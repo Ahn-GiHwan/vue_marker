@@ -4,14 +4,56 @@
 
 * {
   text-decoration: none;
-  font-family: "Maplestory";
+  font-family: 'welcome';
 }
 
 body {
   text-decoration: none;
-  font-family: "Maplestory";
+  font-family: 'welcome';
 }
-  
+
+input[type=password] {
+    font-family: "";
+}
+ 
+table, th, td {
+  border: 1px solid #bcbcbc;
+  padding: 5px;
+}
+
+td {
+  text-align: center;
+}
+
 .router-link-active {
+  color:white;
   font-weight: 900;
+}
+
+.loader{
+  border-style: solid;
+  border-radius: 50%;
+  border-top-color: white !important;
+  box-sizing: border-box;
+  animation: spin .8s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media screen and (max-width: 400px) { 
+  body{
+    font-size: 12px;
+  }
+
+  .aboutImg {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .updateSection {
+    flex-direction: column;
+  }
 }
