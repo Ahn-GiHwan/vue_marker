@@ -13,6 +13,9 @@ export default {
   actions: {
     logout({ commit }) {
       commit('assignState', { currentUser: null })
+    },
+    update({ commit }, currentUser) {
+      commit('assignState', { currentUser })
     }
   }
 }
