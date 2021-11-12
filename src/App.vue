@@ -1,6 +1,8 @@
 <template>
-  <TheHeader />
-  <RouterView />
+  <div class="app">
+    <TheHeader class="sticky inset-x-0 top-0" />
+    <RouterView />
+  </div>
 </template>
 
 <script>
