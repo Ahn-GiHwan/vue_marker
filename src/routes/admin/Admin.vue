@@ -1,5 +1,5 @@
 <template>
-  <section class="flex justify-around items-center h-14 bg-blue-100">
+  <section class="sticky top-10 right-0 left-0 flex justify-around items-center h-14 bg-blue-100 z-10">
     <RouterLink
       to="/admin/goodslist"
       class="border-2 border-solid rounded-md p-1 hover:text-gray-400">
