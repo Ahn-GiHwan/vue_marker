@@ -136,14 +136,12 @@ export default {
             }
           }
         })
-  
         try {
           if(accountId){
             this.$productsBuy({
               productId: this.id,
               accountId
             }) 
-  
             this.$swal.fire({
               title: '구매 신청 성공!',
               icon: 'success'
