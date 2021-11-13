@@ -36,7 +36,7 @@ export default {
     return {
       email: '',
       pw: '',
-      loading: false
+      loading: false,
     }
   }, mounted(){
     this.$refs.email.focus()
