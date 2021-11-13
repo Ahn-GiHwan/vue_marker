@@ -1,25 +1,46 @@
 <template>
-  <h1>goods list</h1>
-  <Loader :loading="loading" />
-  <ul v-if="goodsList.length > 0">
-    <li
-      v-for="goods in goodsList"
-      :key="goods.id">
-      <span>{{ goods.title }}</span>
-      <span>{{ goods.price }}</span>
-      <span>{{ goods.tags.join(' ') }}</span>
-      <button>수정 하기</button>
-    </li>
-  </ul>
-  <span v-else> 등록된 상품이 없습니다. </span>
+  <section class="flex flex-col justify-center items-center w-full">
+    <h1 class="text-4xl p-10">
+      전체 제품 리스트
+    </h1>
+    <Loader
+      v-if="loading"
+      :loading="loading" />
+    <template v-else>
+      <table
+        v-if="goodsList.length > 0">
+        <thead>
+          <tr>
+            <th
+              v-for="(head, i) in headName"
+              :key="i">
+              {{ head }}
+            </th>
+          </tr>
+        </thead>
+        <GoodsListTable
+          v-for="goods in goodsList"
+          :key="goods.id"
+          :goods="goods" />
+      </table>
+      <span v-else> 등록된 상품이 없습니다. ❌</span>
+    </template>
+  </section>
+  <RouterView />
 </template>
 
 <script>
+import GoodsListTable from './GoodsListTable.vue'
+
 export default {
+  components: {
+    GoodsListTable
+  },
   data(){
     return {
       goodsList: [],
-      loading: false
+      loading: false,
+      headName: ['이름', '가격', '판매 여부', '상세 & 수정']
     }
   },
   async mounted(){
@@ -41,7 +62,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>
