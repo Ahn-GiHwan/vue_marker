@@ -1,5 +1,5 @@
 <template>
-  <InputBox ref="title" />
+  <InputBox />
   <GoodsList />
 </template>
 
