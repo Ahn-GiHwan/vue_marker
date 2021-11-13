@@ -1,9 +1,8 @@
 <template>
   <section class="flex flex-col justify-center items-center w-full">
-    <h1 class="text-4xl p-10">
+    <h2 class="text-4xl p-10">
       제품 추가하기
-    </h1>
-
+    </h2>
     <div>
       <span>이름*</span>
       <input
@@ -88,7 +87,7 @@ export default {
           title: title.value,
           price: price.value,
           description: description.value,
-          tags: tags.value.split(','),
+          tags: tags.value ? tags.value.split(',') : [],
           thumbnailBase64: this.thumbnailBase64 || altImage,
           photoBase64: this.photoBase64 || altImage
         })
