@@ -1,32 +1,44 @@
 <template>
-  <h1>sell list</h1>
-  <Loader :loading="loading" />
-  <ul v-if="sellList.length > 0">
-    <li
-      v-for="sell in sellList"
-      :key="sell.detailDd">
-      <span>{{ sell.user.email }}</span>
-      <span>{{ sell.user.displayName }}</span>
-      <span>{{ sell.product.title }}</span>
-      <span>{{ sell.product.price }}</span>
-      <span>{{ sell.account.bankName }}</span>
-      <span>{{ sell.account.accountNumber }}</span>
-      <span>{{ sell.timePaid }}</span>
-      <span>{{ sell.isCanceled }}</span>
-      <span>{{ sell.done }}</span>
-      
-      <button>수정 하기</button>
-    </li>
-  </ul>
-  <span v-else> 구입한 상품이 없습니다. </span>
+  <section class="flex flex-col justify-center items-center w-full">
+    <h1 class="text-4xl p-10">
+      전체 판매 내역 리스트
+    </h1>
+    <Loader
+      v-if="loading"
+      :loading="loading" />
+    <template v-else>
+      <table
+        v-if="sellList.length > 0">
+        <thead>
+          <tr>
+            <th
+              v-for="(head, i) in headName"
+              :key="i">
+              {{ head }}
+            </th>
+          </tr>
+        </thead>
+        <SellTable
+          v-for="sell in sellList"
+          :key="sell.detailId"
+          :sell="sell" />
+      </table>
+      <span v-else> 구입한 상품이 없습니다. ❌</span>
+    </template>
+  </section>
 </template>
 
 <script>
+import SellTable from './SellTable'
 export default {
+  components: {
+    SellTable
+  },
   data(){
     return {
       sellList: [],
-      loading: false
+      loading: false,
+      headName: ['이메일','닉네임','제품 이름','제품 가격','결제 은행','계좌 번호','구매 일자','취소 여부','획정 여부']
     }
   },
   async mounted(){
