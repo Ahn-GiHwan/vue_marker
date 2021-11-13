@@ -7,8 +7,8 @@ export default async function () {
     method:'POST',
     headers: {
       'content-type': 'application/json',
-      'apikey': 'FcKdtJs202110',
-      'username': 'AhnGiHwan',
+      'apikey': process.env.apiKey,
+      'username': process.env.username,
       'Authorization': `Bearer ${token}`
     },
   })
