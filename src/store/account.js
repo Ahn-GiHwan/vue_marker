@@ -2,7 +2,8 @@ export default {
   namespaced: true,
   state: () => ({
     totalBalance: 0,
-    accounts: []
+    accounts: [],
+    update: false
   }),
   mutations: {
     assignState(state, payload) {
@@ -18,7 +19,8 @@ export default {
     updateAccountInfo({ commit }, { totalBalance, accounts }) {
       commit('assignState', {
         totalBalance,
-        accounts
+        accounts,
+        update: true
       })
     },
     
