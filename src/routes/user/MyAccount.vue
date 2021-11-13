@@ -88,10 +88,7 @@ export default {
           signature: true
         })
 
-        this.$swal.fire({
-          title: '해지 완료',
-          icon: 'success'
-        })
+        this.$openAlert('해지가 완료되었습니다.')
 
         await this.getAccountData()
       } else {

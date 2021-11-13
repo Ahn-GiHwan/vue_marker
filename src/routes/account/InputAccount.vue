@@ -106,13 +106,8 @@ export default {
           signature: signature.checked
         })
 
-        this.$swal.fire({
-          title: '계좌 생성 완료',
-          icon: 'success'
-        })
-
         await this.getAccountData()
-
+        this.$openAlert('계좌 연결에 성공했습니다.')
         this.$router.push('/about/myaccount')
       } catch (error) {
         const title = error.response.data

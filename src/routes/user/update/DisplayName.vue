@@ -17,9 +17,6 @@
         수정하기
       </button>
       <Loader :loading="loading" />
-      <Alert
-        :show="show"
-        :title="title" />
     </div>
   </section>
 </template>
@@ -29,8 +26,6 @@ export default {
   data(){
     return {
       loading: false,
-      show: false,
-      title: '',
     }
   },
   computed: {
@@ -62,13 +57,7 @@ export default {
         })
 
         this.$store.dispatch('user/update', currentUser)
-
-        this.show = true
-        this.title = '닉네임 수정이 완료되었습니다.'
-        setTimeout(() => {
-          this.show = false
-        }, 5000)
-
+        this.$openAlert('닉네임이 변경되었습니다.')
       } catch (error) {
         const title = error.response.data
         this.$swal.fire({ title, icon: 'error' })

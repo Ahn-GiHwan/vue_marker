@@ -46,6 +46,11 @@ export default {
       try {
         const accountInfo = await this.$myAccountInfo()
         this.$store.dispatch('account/updateAccountInfo', accountInfo)
+        if(!accountInfo.totalBalance) {
+          this.$openAlert('현재 등록된 계좌가 없습니다!', '계좌를 등록하러 가시겠습니까?', '/about/myaccount/addaccount')
+        } else {
+          this.$openAlert('로그인 성공', '환영합니다😄')
+        }
       } catch (error) {
         const title = error.response.data
         this.$swal.fire({

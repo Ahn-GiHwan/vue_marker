@@ -33,9 +33,6 @@
         </button>
       </div>
       <Loader :loading="loading" />
-      <Alert
-        :show="show"
-        :title="title" />
     </div>
   </section>
 </template>
@@ -47,8 +44,6 @@ export default {
     return {
       profileImgBase64: '',
       loading: false,
-      show: false,
-      title: ''
     }
   },
   computed: {
@@ -92,13 +87,7 @@ export default {
         })
 
         this.$store.dispatch('user/update', currentUser)
-
-        this.show = true
-        this.title = '프로필 이미지가 변경되었습니다.'
-        setTimeout(() => {
-          this.show = false
-        }, 5000)
-
+        this.$openAlert('프로필 이미지가 변경되었습니다.')
         this.reset()
       } catch (error) {
         const title = error.response.data
@@ -117,12 +106,7 @@ export default {
         })
 
         this.$store.dispatch('user/update', currentUser)
-
-        this.show = true
-        this.title = '기본 이미지로 변경되었습니다.'
-        setTimeout(() => {
-          this.show = false
-        }, 5000)
+        this.$openAlert('기본 이미지로 변경되었습니다.')
       } catch (error) {
         const title = error.response.data
         this.$swal.fire({
