@@ -7,7 +7,7 @@ import Loader from '~/components/Loader'
 import Alert from '~/components/Alert'
 import router from '~/routes'
 import store from '~/store'
-import { user, account, goods, goodsMaster } from '~/plugins'
+import { user, account, goods, goodsMaster, alert } from '~/plugins'
 
 import './style/style.css'
 import 'sweetalert2/dist/sweetalert2.min.css'
@@ -32,6 +32,7 @@ createApp(App)
   .use(account, {endpoint, headers})
   .use(goods, {endpoint, headers})
   .use(goodsMaster, {endpoint, headers, adminHeader})
+  .use(alert)
   .use(router)
   .use(store)
   .use(VueSweetalert2)
