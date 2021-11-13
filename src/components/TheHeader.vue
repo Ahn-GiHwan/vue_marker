@@ -1,10 +1,10 @@
 <template>
-  <header class="z-10	 flex justify-end items-center h-10 bg-blue-300">
+  <header class="z-10	 flex justify-end items-center h-10 bg-blue-400">
     <template
       v-if="currentUser">
       <img
         class="block w-7 h-7 rounded-full overflow-hidden mr-2"
-        :src="currentUser.profileImg ? currentUser.profileImg : altImage"
+        :src="currentUser.profileImg"
         alt="프로필 이미지" />
       <span>[{{ currentUser.displayName }}]님😎</span>
       <RouterLink
@@ -61,7 +61,7 @@ export default {
         title: '정말 로그아웃 하시겠습니까?',
         icon: 'question',
         showCancelButton:true,
-      }).then(async({ isConfirmed })=>{
+      }).then( async ({ isConfirmed }) => {
         if(isConfirmed) {
            const res = await this.$logout()
 
