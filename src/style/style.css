@@ -26,7 +26,7 @@ td {
 }
 
 .router-link-active {
-  color:white;
+  color:gray;
   font-weight: 900;
 }
 
@@ -52,8 +52,8 @@ td {
     width: 100px;
     height: 100px;
   }
-  
-  .updateSection {
-    flex-direction: column;
+
+  .goodsinfo {
+    margin-top: 10px;
   }
 }
