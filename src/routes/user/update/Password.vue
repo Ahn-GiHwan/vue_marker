@@ -104,12 +104,13 @@ data(){
 
         this.$swal.fire({
           title: '수정 완료!',
+          text: '비밀번호 변경으로 자동 로그아웃 됩니다.',
           icon: 'success'
         })
-
-        this.$refs.oldPassword.value = ''
-        this.$refs.newPassword.value = ''
-        this.$refs.newPasswordConfirm.value = ''
+        this.$store.dispatch('user/logout')
+        this.$store.dispatch('account/logout')
+        localStorage.removeItem('token')
+        this.$router.push('/login')
       } catch (error) {
         const title = error.response.data
         this.$swal.fire({ title, icon: 'error' })
