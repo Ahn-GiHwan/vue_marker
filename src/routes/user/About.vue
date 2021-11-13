@@ -1,6 +1,6 @@
 <template>
   <section class="flex flex-col w-full justify-center items-center">
-    <div class="flex justify-center items-center m-2 relative">
+    <div class="relative flex justify-center items-center m-2">
       <img
         class="aboutImg block w-40 h-40 rounded-full overflow-hidden"
         :src="currentUser.profileImg"
