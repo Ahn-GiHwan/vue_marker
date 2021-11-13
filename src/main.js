@@ -4,6 +4,7 @@ import VueSweetalert2 from 'vue-sweetalert2'
 import '~/routes/guards'
 import App from '~/App.vue'
 import Loader from '~/components/Loader'
+import Alert from '~/components/Alert'
 import router from '~/routes'
 import store from '~/store'
 import { user, account, goods, goodsMaster } from '~/plugins'
@@ -35,4 +36,5 @@ createApp(App)
   .use(store)
   .use(VueSweetalert2)
   .component('Loader', Loader)
+  .component('Alert', Alert)
   .mount('#app')
