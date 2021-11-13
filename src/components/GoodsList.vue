@@ -8,7 +8,7 @@
       @click="clickGoods(goods.id)">
       <img
         class="w-30 h-30 rounded-full p-2"
-        :src="goods.thumbnail || altImage"
+        :src="goods.thumbnail"
         alt="썸네일 이미지" />
       <h2>{{ goods.title }}</h2>
       <span>{{ goods.price.toLocaleString()+"원" }}</span>
@@ -18,15 +18,11 @@
 </template>
 
 <script>
-import altImage from '~/utils/altImage'
 export default {
   computed:{
     goodsList(){
       return this.$store.state.goods.goodsList
     },
-    altImage(){
-      return altImage
-    }
   },
   async mounted(){
     if(this.loading) return
