@@ -11,6 +11,6 @@ export default {
   components: {
     InputBox,
     GoodsList
-  },
+  }
 }
 </script>
