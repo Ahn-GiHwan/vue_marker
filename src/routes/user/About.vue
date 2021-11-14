@@ -13,17 +13,17 @@
     <div
       class="sticky top-10 right-0 left-0 flex justify-around items-center w-full h-14 bg-blue-200">
       <RouterLink
-        class="border-2 border-solid rounded-md p-1 hover:text-gray-400"
+        class="border-2 border-solid rounded-md border-white p-1 hover:text-gray-400"
         to="/about/update">
         내 정보 수정
       </RouterLink>
       <RouterLink
-        class="border-2 border-solid rounded-md p-1 hover:text-gray-400"
+        class="border-2 border-solid rounded-md border-white p-1 hover:text-gray-400"
         to="/about/myaccount">
         내 계좌정보
       </RouterLink>
       <RouterLink
-        class="border-2 border-solid rounded-md p-1 hover:text-gray-400"
+        class="border-2 border-solid rounded-md border-white p-1 hover:text-gray-400"
         to="/about/myselllist">
         내 구매 목록
       </RouterLink>
