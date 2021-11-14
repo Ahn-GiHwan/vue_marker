@@ -167,10 +167,7 @@ export default {
           isSoldOut: isSoldOut.checked
         })
 
-        this.$swal.fire({
-          title: '수정이 완료되었습니다.',
-          icon: 'success'
-        })
+        this.$openAlert('수정이 완료되었습니다.')
       } catch (error) {
         const title = error.response.data
         this.$swal.fire({
