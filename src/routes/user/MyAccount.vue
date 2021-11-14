@@ -87,15 +87,10 @@ export default {
           accountId,
           signature: true
         })
-
         this.$openAlert('해지가 완료되었습니다.')
-
         await this.getAccountData()
       } else {
-        this.$swal.fire({
-          title: '해지 취소',
-          icon: 'warning'
-        })
+        this.$openAlert('❌ 해지가 취소되었습니다.')
       }
     }
   }
