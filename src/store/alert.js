@@ -14,9 +14,6 @@ export default {
     }
   },
   actions: {
-    showAlert({ commit }, data) {
-      commit('assignState', { ...data, show: true })
-    },
     closeAlert({ commit },) {
       commit('assignState', {
         show: false,
@@ -24,6 +21,9 @@ export default {
         text: '',
         path: ''
       })
+    },
+    showAlert({ commit }, data) {
+      commit('assignState', { ...data, show: true })
     },
   }
 }
