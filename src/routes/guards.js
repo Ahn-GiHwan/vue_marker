@@ -11,7 +11,6 @@ router.beforeEach(async (to) => {
   if (getStorage) {
     if (!currentUser) {
       console.log('guard getUser')
-      console.log('12321312')
       const user = await auth()
 
       store.commit('user/assignState', {
