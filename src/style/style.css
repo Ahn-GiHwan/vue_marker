@@ -2,12 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  text-decoration: none;
-  font-family: 'welcome';
-}
-
-body {
+*, body, button {
   text-decoration: none;
   font-family: 'welcome';
 }
@@ -26,7 +21,8 @@ td {
 }
 
 .router-link-active {
-  color:gray;
+  text-decoration: underline;
+  color: white;
   font-weight: 900;
 }
 
@@ -39,7 +35,7 @@ td {
 }
 
 .alert {
-  animation: fadeInOut 5s linear;
+  animation: fadeInOut 6s linear;
 }
 
 @keyframes spin {
