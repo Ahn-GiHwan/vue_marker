@@ -1,6 +1,5 @@
 import store from '../store/index'
 
-
 export default {
   install(app) {
     app.config.globalProperties.$openAlert = async (title, text = '', path = '') => {
@@ -11,10 +10,12 @@ export default {
       })
       setTimeout(() => {
         store.dispatch('alert/closeAlert')
-      }, 5000)
+      }, 6000)
     }
     app.config.globalProperties.$closeAlert = async () => {
-      store.dispatch('alert/closeAlert')
+      console.log('false')
+      await store.dispatch('alert/closeAlert')
     }
   }
 }
+
