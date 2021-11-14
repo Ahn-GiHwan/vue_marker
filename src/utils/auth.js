@@ -12,6 +12,5 @@ export default async function () {
       'Authorization': `Bearer ${token}`
     },
   })
-  console.log('auth', data)
   return data
 }
