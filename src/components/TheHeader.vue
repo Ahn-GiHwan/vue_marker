@@ -24,7 +24,7 @@
         관리자페이지
       </RouterLink>
       <button
-        class="mr-3"
+        class="mx-3"
         @click="onLogout">
         로그아웃
       </button>
