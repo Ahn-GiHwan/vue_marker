@@ -63,7 +63,7 @@ export default {
         console.log('productsOk', res.data)
         return res.data
     }
-    app.config.globalProperties.$sellAllList = async () => {
+    app.config.globalProperties.$buyAllList = async () => {
         const res = await axios({
           url:`${endpoint}/${category}/transactions/details `,
           method: 'GET',
@@ -75,7 +75,7 @@ export default {
         console.log('sellAllList', res.data)
         return res.data
     }
-    app.config.globalProperties.$sellInfo = async (data) => {
+    app.config.globalProperties.$buyInfo = async (data) => {
         const res = await axios({
           url:`${endpoint}/${category}/transactions/detail`,
           method: 'POST',
