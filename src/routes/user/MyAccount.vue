@@ -90,7 +90,7 @@ export default {
         this.$openAlert('해지가 완료되었습니다.')
         await this.getAccountData()
       } else {
-        this.$openAlert('❌ 해지가 취소되었습니다.')
+        this.$openAlert('❗️ 동의 시 해지가 됩니다.')
       }
     }
   }
