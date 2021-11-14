@@ -74,13 +74,14 @@ export default {
 
         const currentAccount = await this.$myAccountInfo()
 
+        this.$router.push('/')
+        
         this.$store.commit('account/assignState', {
           currentAccount
         })
 
         this.getAccountData()
 
-        this.$router.push('/')
       } catch (error) {
         const title = error.response.data
         this.$swal.fire({
