@@ -8,10 +8,12 @@
 
 <script>
 import TheHeader from '~/components/TheHeader'
+import Alert from '~/components/Alert'
 
 export default {
   components: {
-    TheHeader
+    TheHeader,
+    Alert
   }
 }
 </script>
