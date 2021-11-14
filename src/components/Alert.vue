@@ -1,8 +1,8 @@
 <template>
   <section
     v-show="show"
-    class="alert absolute right-2 bottom-2">
-    <div class="relative flex flex-col justify-center items-center rounded-xl p-5 m-5 bg-blue-400 text-white">
+    class="alert absolute bottom-5 rounded-2xl bg-blue-200">
+    <div class="relative flex flex-col justify-center items-center rounded-xl p-5 m-1 bg-blue-400 text-white">
       <span
         v-if="title"
         class="text-lg font-bold">{{ title }}</span>
@@ -15,7 +15,7 @@
       </button>
       <button
         class="absolute top-0 right-2"
-        @click="close">
+        @click="$closeAlert()">
         x
       </button>
     </div>
@@ -38,10 +38,5 @@ export default {
       return this.$store.state.alert.path
     },
   },
-  methods: {
-    close(){
-      this.$closeAlert()
-    }
-  }
 }
 </script>
