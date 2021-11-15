@@ -2,25 +2,33 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LogIn from './LogIn'
 import SignUp from './SignUp'
 import Home from './Home'
+import GoodsInfo from './goods/GoodsInfo'
 
 import About from './user/About.vue'
+
 import UpdateUser from './user/update/UpdateUser'
 import DisplayName from './user/update/DisplayName'
 import Password from './user/update/Password'
 import ProfileImg from './user/update/ProfileImg'
-import MyAccount from './user/MyAccount'
-import AddAccount from './user/AddAccount'
-import MySellList from './user/MySellList'
 
-import GoodsInfo from './goods/GoodsInfo'
+import MyAccount from './user/account/MyAccount'
+import AddAccount from './user/account/AddAccount'
+import InputAccount from './user/account/InputAccount'
+
+import MyBuyList from './user/buyList/MyBuyList'
+import ReservationList from './user/buyList/ReservationList'
+import BuyList from './user/buyList/BuyList'
+import CancelList from './user/buyList/CancelList'
 
 import Admin from './admin/Admin'
-import GoodsList from './admin/GoodsList'
-import SellList from './admin/SellList'
-import AddGoods from './admin/AddGoods'
-import AdminGoodsInfo from './admin/GoodsUpdate.vue'
-
-import InputAccount from './account/InputAccount'
+import GoodsList from './admin/goodsList/GoodsList'
+import AdminSellListNav from './admin/sellList/SellListNav'
+import AllSellList from './admin/sellList/AllSellList'
+import AdminReservationList from './admin/sellList/ReservationList'
+import AdminSellList from './admin/sellList/SellList'
+import AdminCancelList from './admin/sellList/CancelList'
+import AddGoods from './admin/AddGoods/AddGoods'
+import AdminGoodsInfo from './admin/goodsList/GoodsUpdate.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -62,8 +70,26 @@ export default createRouter({
           ]
         },
         {
-          path: 'myselllist',
-          component: MySellList
+          path: 'mybuylist',
+          component: MyBuyList,
+          redirect: { name: 'reservationlist' },
+          children: [
+            {
+              path: 'reservationlist',
+              name: 'reservationlist',
+              component: ReservationList
+            },
+            {
+              path: 'buylist',
+              name: 'buylist',
+              component: BuyList
+            },
+            {
+              path: 'cancellist',
+              name: 'cancellist',
+              component: CancelList
+            }
+          ]
         }
       ]
     },
@@ -79,7 +105,27 @@ export default createRouter({
         },
         {
           path: 'selllist',
-          component: SellList
+          component: AdminSellListNav,
+          redirect: { name: 'allList' },
+          children: [
+            {
+              path: 'allList',
+              name: 'allList',
+              component: AllSellList
+            },
+            {
+              path: 'reservationList',
+              component: AdminReservationList
+            },
+            {
+              path: 'sellList',
+              component: AdminSellList
+            },
+            {
+              path: 'cancelList',
+              component: AdminCancelList
+            }
+          ]
         },
         {
           path: 'addGoods',
