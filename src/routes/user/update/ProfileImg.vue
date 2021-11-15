@@ -10,7 +10,7 @@
         type="file"
         @change="selectFile" />
       <img
-        :src="profileImgBase64"
+        :src="currentUser.profileImg"
         class="w-40 h-40 border border-solid border-black p-3 "
         alt="이미지 미리보기" />
       <div class="flex justify-around items-center mt-5 w-1/3">
@@ -28,7 +28,7 @@
         <button
           v-if="currentUser.profileImg"
           class="border border-solid rounded-md p-2 bg-green-300 text-white outline-none"
-          @click="removeImg">
+          @click="onAltImage">
           기본 이미지로 설정
         </button>
       </div>
@@ -39,6 +39,7 @@
 
 <script>
 import profileImgBase64 from '~/utils/altImage'
+
 export default {
   data(){
     return {
@@ -54,10 +55,7 @@ export default {
   methods:{
     validation(){
       if(!this.profileImgBase64){
-        this.$swal.fire({
-          title: '이미지 파일을 올려주세요',
-          icon: 'warning'
-        })
+        this.$swal.fire({ title: '이미지 파일을 올려주세요', icon: 'warning' })
         return false
       }
       return true
@@ -67,7 +65,7 @@ export default {
       for (const file of files){
         const reader = new FileReader()
         reader.readAsDataURL(file)
-        reader.addEventListener('load', ()=>{
+        reader.addEventListener('load', () => {
           this.profileImgBase64 = reader.result
         })
       }
@@ -96,23 +94,17 @@ export default {
         this.loader = false
       }
     },
-    async removeImg(){
+    async onAltImage(){
       try {
         if(this.loader) return
         this.loader = true
 
-        const currentUser = await this.$userPut({
-          profileImgBase64
-        })
-
+        const currentUser = await this.$userPut({ profileImgBase64 })
         this.$store.dispatch('user/update', currentUser)
         this.$openAlert('기본 이미지로 변경되었습니다.')
       } catch (error) {
         const title = error.response.data
-        this.$swal.fire({
-          title,
-          icon: 'error'
-        })
+        this.$swal.fire({ title, icon: 'error' })
       } finally {
         this.loader = false
       }
