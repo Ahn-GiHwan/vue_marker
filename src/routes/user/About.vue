@@ -20,12 +20,12 @@
       <RouterLink
         class="border-2 border-solid rounded-md border-white p-1 hover:text-gray-400"
         to="/about/myaccount">
-        내 계좌정보
+        내 계좌정보 ({{ $store.state.account.accounts.length }})
       </RouterLink>
       <RouterLink
         class="border-2 border-solid rounded-md border-white p-1 hover:text-gray-400"
         to="/about/mybuylist">
-        내 구매 목록
+        내 구매 목록 ({{ $store.state.buyList.allList.length }})
       </RouterLink>
     </div>
     <RouterView />
@@ -38,5 +38,16 @@ export default {
       return this.$store.state.user.currentUser
     },
   },
+  async mounted(){
+    try {
+      this.loading = true
+      const res = await this.$buyAllList()
+      this.$store.dispatch('buyList/updateBuyList', { allList: res })
+    } catch (error) {
+      console.log(error.response.data)
+    } finally {
+      this.loading = false
+    }
+  }
 }
 </script>
