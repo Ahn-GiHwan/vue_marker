@@ -55,10 +55,7 @@ export default {
         }
       } catch (error) {
         const title = error.response.data
-        this.$swal.fire({
-          title,
-          icon: 'error'
-        })
+        this.$swal.fire({ title, icon: 'error' })
       }
     },
     async onSubmit(){
