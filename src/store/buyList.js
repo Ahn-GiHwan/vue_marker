@@ -1,7 +1,8 @@
 export default {
   namespaced: true,
   state: () => ({
-    allList: []
+    allList: [],
+    update: false
   }),
   getters: {
     reservationList(state) {
@@ -26,7 +27,12 @@ export default {
       commit('assignState', data )
     },
     logout({ commit }) {
-      commit('assignState', { allList: [] })
+      commit('assignState', {
+        allList: [], update: false
+      })
     },
+    update({ commit }) {
+      commit('assignState', { update: true })
+    }
   }
 }

@@ -3,6 +3,7 @@ export default {
   state: () => ({
     goodsList: [],
     sellList: [],
+    update: false
   }),
   getters: {
     reservationList(state) {
@@ -25,6 +26,9 @@ export default {
   actions: {
     updateAdmin({ commit }, data) {
       commit('assignState', data)
+    },
+    logout({ commit }) {
+      commit('assignState', { update: false })
     },
     goodsListNull({ commit }) {
       commit('assignState', { goodsList: [] } )
