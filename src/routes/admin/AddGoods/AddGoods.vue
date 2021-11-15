@@ -91,6 +91,8 @@ export default {
           thumbnailBase64: this.thumbnailBase64 || altImage,
           photoBase64: this.photoBase64 || altImage
         })
+        const res = await this.$products()
+        await this.$store.dispatch('admin/updateAdmin', { goodsList: res })
         this.resetInput()
         this.$swal.fire({ title: '제품이 추가되었습니다.', icon: 'success' })
       } catch (error) {
