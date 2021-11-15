@@ -63,17 +63,18 @@ export default {
         showCancelButton:true,
       }).then( async ({ isConfirmed }) => {
         if(isConfirmed) {
-           const res = await this.$logout()
-
-          if(res) {
-            this.$swal.fire({
-              title: '로그아웃이 완료되었습니다.',
-              icon: 'success'
-            })
-            this.$store.dispatch('user/logout')
-            this.$store.dispatch('account/logout')
-            localStorage.removeItem('token')
-            this.$router.push('/')
+          try {
+            const res = await this.$logout()
+            if(res) {
+              this.$swal.fire({ title: '로그아웃이 완료되었습니다.', icon: 'success' })
+              await this.$store.dispatch('user/logout')
+              await this.$store.dispatch('account/logout')
+              localStorage.removeItem('token')
+              this.$router.push('/')
+            }
+          } catch (error) {
+            const title = error.response.data
+            this.$swal.fire({ title, icon: 'error' })
           }
         }
       })
