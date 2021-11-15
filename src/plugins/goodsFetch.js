@@ -72,7 +72,7 @@ export default {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
           },
         })
-        console.log('sellAllList', res.data)
+        console.log('buyAllList', res.data)
         return res.data
     }
     app.config.globalProperties.$buyInfo = async (data) => {
