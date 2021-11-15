@@ -14,7 +14,7 @@ export default {
   },
   actions: {
     logout({ commit }) {
-      commit('assignState', { currentAccount: null })
+      commit('assignState', { currentAccount: null, update: false })
     },
     updateAccountInfo({ commit }, { totalBalance, accounts }) {
       commit('assignState', {
