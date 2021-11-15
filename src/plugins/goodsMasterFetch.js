@@ -14,7 +14,7 @@ export default {
         console.log('products', res.data)
         return res.data        
     }
-    app.config.globalProperties.$buyAll = async () => {
+    app.config.globalProperties.$sellAll = async () => {
         const res = await axios({
           url:`${endpoint}/${category}/transactions/all`,
           method: 'GET',
