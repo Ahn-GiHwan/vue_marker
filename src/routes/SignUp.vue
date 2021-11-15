@@ -74,6 +74,7 @@
 
 <script>
 import defaultImage from '~/utils/altImage'
+import { emptyCheck } from '~/utils/emptyCheck'
 
 export default {
   data(){
@@ -96,9 +97,9 @@ export default {
 
       try {
         await this.$signup({
-          email: `${this.email}@${this.$refs.select.value}`,
-          password: this.pw,
-          displayName: this.displayName,
+          email: `${this.email.trim()}@${this.$refs.select.value}`,
+          password: this.pw.trim(),
+          displayName: this.displayName.trim(),
           profileImgBase64: this.profileImgBase64 || defaultImage
         })
         this.$swal.fire({
@@ -109,10 +110,7 @@ export default {
         this.$router.push('/login')
       } catch (error) {
         const title = error.response.data
-        this.$swal.fire({
-          title,
-          icon:'error'
-        })
+        this.$swal.fire({ title, icon:'error' })
       } finally {
         this.loading = false
       }
@@ -122,7 +120,7 @@ export default {
       for (const file of files){
         const reader = new FileReader()
         reader.readAsDataURL(file)
-        reader.addEventListener('load', ()=>{
+        reader.addEventListener('load', () => {
           this.profileImgBase64 = reader.result
         })
       }
@@ -130,57 +128,43 @@ export default {
     validation(){
       const { email, select, pw, pwConfirm, displayName } = this.$refs
       if(!email.value) {
-        this.$swal({
-          title: '이메일을 입력해 주세요.',
-          icon: 'warning'
-        }).then((value)=>{
-          if(value)
-            this.$refs.email.focus()
-        })
+        this.$swal({ title: '이메일을 입력해 주세요.', icon: 'warning' })
+        return false
+      } else if(emptyCheck(email.value)) {
+        this.$swal.fire({ title: '이메일에 공백은 안됩니다.', icon: 'warning' })
+        return false
+      } else if(!select.value) {
+        this.$swal.fire({ title: '이메일을 선택해 주세요.', icon: 'warning' })
         return false
       }
-      if(!select.value) {
-        this.$swal.fire({
-          title: '이메일을 선택해 주세요.',
-          icon: 'warning'
-        })
-        return false
-      }
+
       if(!pw.value) {
-        this.$swal.fire({
-          title: '비밀번호를 입력해 주세요.',
-          icon: 'warning'
-        })
+        this.$swal.fire({ title: '비밀번호를 입력해 주세요.', icon: 'warning' })
+        return false
+      } else if(emptyCheck(pw.value)) {
+        this.$swal.fire({ title: '비밀번호에 공백은 안됩니다.', icon: 'warning' })
+        return false
+      } else if(pw.value.length < 8) {
+        this.$swal.fire({ title: '비밀번호는 8자 이상 입력해 주세요.', icon: 'warning' })
         return false
       }
-      if(pw.value.length < 8) {
-        this.$swal.fire({
-          title: '비밀번호는 8자 이상 입력해 주세요.',
-          icon: 'warning'
-        })
-        return false
-      }
+      
       if(!pwConfirm.value) {
-        this.$swal.fire({
-          title: '비밀번호 확인을 입력해 주세요.',
-          icon: 'warning'
-        })
+        this.$swal.fire({ title: '비밀번호 확인을 입력해 주세요.', icon: 'warning' })
+        return false
+      } else if(pw.value !== pwConfirm.value) {
+        this.$swal.fire({ title: '비밀번호와 비밀번호 확인이 맞지 않습니다.', icon: 'warning' })
         return false
       }
-      if(pw.value !== pwConfirm.value) {
-        this.$swal.fire({
-          title: '비밀번호와 비밀번호 확인이 맞지 않습니다.',
-          icon: 'warning'
-        })
-        return false
-      }
+
       if(!displayName.value) {
-        this.$swal.fire({
-          title: '닉네임을 입력해 주세요.',
-          icon: 'warning'
-        })
+        this.$swal.fire({ title: '닉네임을 입력해 주세요.', icon: 'warning' })
+        return false
+      } else if(emptyCheck(displayName.value)) {
+        this.$swal.fire({ title: '닉네임에 공백은 안됩니다.', icon: 'warning' })
         return false
       }
+
       return true
     }
   }
