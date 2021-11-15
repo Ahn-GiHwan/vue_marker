@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import { emptyCheck } from '~/utils/emptyCheck'
+
 export default {
   data(){
     return {
@@ -65,65 +67,42 @@ export default {
       this.loading = true
 
       try {
-        const res = await this.$login({
-          email: this.email,
-          password: this.pw
-        })
-        
+        const res = await this.$login({ email: this.email.trim(), password: this.pw.trim() })
         localStorage.setItem('token', res.accessToken)
-
         const currentAccount = await this.$myAccountInfo()
-
         this.$router.push('/')
-        
-        this.$store.commit('account/assignState', {
-          currentAccount
-        })
-
+        this.$store.commit('account/assignState', { currentAccount })
         this.getAccountData()
-
       } catch (error) {
         const title = error.response.data
-        this.$swal.fire({
-          title,
-          icon: 'error'
-        })
+        this.$swal.fire({ title, icon: 'error' })
       } finally {
         this.loading = false
       }
     },
     validation(){
-      const { email, pw} = this.$refs
+      const { email, pw } = this.$refs
       if(!email.value) {
-        this.$swal({
-          title: '이메일을 입력해 주세요.',
-          icon: 'warning'
-        }).then((value)=>{
-          if(value)
-            this.$refs.email.focus()
-        })
+        this.$swal.fire({ title: '이메일을 입력해 주세요.', icon: 'warning' })
+        return false
+      } else if(emptyCheck(email.value)) {
+        this.$swal.fire({ title: '이메일에 공백은 안됩니다.', icon: 'warning' })
         return false
       }
+
       if(!pw.value) {
-        this.$swal.fire({
-          title: '비밀번호를 입력해 주세요.',
-          icon: 'warning'
-        })
+        this.$swal.fire({ title: '비밀번호를 입력해 주세요.', icon: 'warning' })
+        return false
+      } else if(emptyCheck(pw.value)) {
+        this.$swal.fire({ title: '비밀번호에 공백은 안됩니다.', icon: 'warning' })
+        return false
+      } else if(pw.value.length < 8) {
+        this.$swal.fire({ title: '비밀번호는 8자 이상 입력해 주세요.', icon: 'warning' })
         return false
       }
-      if(pw.value.length < 8) {
-        this.$swal.fire({
-          title: '비밀번호는 8자 이상 입력해 주세요.',
-          icon: 'warning'
-        })
-        return false
-      }
+
       return true
     }
   }
 }
 </script>
-
-<style>
-
-</style>
