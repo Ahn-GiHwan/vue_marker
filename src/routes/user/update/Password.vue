@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { emptyCheck } from '~/utils/emptyCheck'
+
 export default {
 data(){
     return {
@@ -52,40 +54,46 @@ data(){
       const { oldPassword, newPassword, newPasswordConfirm } = this.$refs
       if(oldPassword.value || newPassword.value || newPasswordConfirm.value) {
         if(!oldPassword.value){
-          this.$swal.fire({
-            title: '기존 비밀번호를 적어주세요',
-            icon: 'warning'
-          })
+          this.$swal.fire({ title: '기존 비밀번호를 적어주세요', icon: 'warning' })
+          return false
+        } else if (oldPassword.value.length < 8){
+          this.$swal.fire({ title: '비밀번호는 8자 이상 입니다.', icon: 'warning' })
+          return false
+        } else if(emptyCheck(oldPassword.value)) {
+          this.$swal.fire({ title: '비밀번호에 공백은 안됩니다.', icon: 'warning' })
           return false
         }
+
         if(!newPassword.value){
-          this.$swal.fire({
-            title: '변경할 비밀번호를 적어주세요',
-            icon: 'warning'
-          })
+          this.$swal.fire({ title: '변경할 비밀번호를 적어주세요', icon: 'warning' })
+          return false
+        } else if (newPassword.value.length < 8){
+          this.$swal.fire({ title: '비밀번호는 8자 이상 입니다.', icon: 'warning' })
+          return false
+        } else if(emptyCheck(newPassword.value)) {
+          this.$swal.fire({ title: '변경할 비밀번호에 공백은 안됩니다.', icon: 'warning' })
+          return false
+        } else if(oldPassword.value === newPassword.value) {
+          this.$swal.fire({ title: '변경할 비밀번호가 기존 비밀번호와 같습니다.', icon: 'warning' })
           return false
         }
+
         if(!newPasswordConfirm.value){
-          this.$swal.fire({
-            title: '변경할 비밀번호 확인을 적어주세요',
-            icon: 'warning'
-          })
+          this.$swal.fire({ title: '변경할 비밀번호 확인을 적어주세요', icon: 'warning' })
+          return false
+        } else if (newPasswordConfirm.value.length < 8){
+          this.$swal.fire({ title: '비밀번호는 8자 이상 입니다.', icon: 'warning' })
+          return false
+        } else if(emptyCheck(newPasswordConfirm.value)) {
+          this.$swal.fire({ title: '비밀번호 확인에 공백은 안됩니다.', icon: 'warning' })
+          return false
+        } else if(newPassword.value !== newPasswordConfirm.value){
+          this.$swal.fire({ title: '변경할 두 비밀번호가 일치하지 않습니다', icon: 'warning' })
           return false
         }
-        if(oldPassword.value.length < 8 || newPassword.value.length < 8 || newPasswordConfirm.value.length < 8 ){
-          this.$swal.fire({
-            title: '비밀번호는 8자 이상 입니다.',
-            icon: 'warning'
-          })
-          return false
-        }
-        if(newPassword.value !== newPasswordConfirm.value){
-          this.$swal.fire({
-            title: '변경할 두 비밀번호가 일치하지 않습니다',
-            icon: 'warning'
-          })
-          return false
-        }
+      } else {
+        this.$swal.fire({ title: '내용을 입력해 주세요.', icon: 'warning' })
+        return false
       }
       return true
     },

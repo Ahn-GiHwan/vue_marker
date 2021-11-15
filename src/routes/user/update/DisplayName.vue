@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import { emptyCheck } from '~/utils/emptyCheck'
+
 export default {
   data(){
     return {
@@ -37,12 +39,15 @@ export default {
     validation(){
       const { displayName } = this.$refs
       if(!displayName.value){
-        this.$swal.fire({
-          title: '닉네임을 적어주세요',
-          icon: 'warning'
-        })
+        this.$swal.fire({ title: '닉네임을 적어주세요', icon: 'warning' })
         return false
-      }
+      } else if(emptyCheck(displayName.value)) {
+        this.$swal.fire({ title: '닉네임에 공백은 안됩니다.', icon: 'warning' })
+        return false
+      } else if(displayName.value === this.currentUser.displayName) {
+        this.$swal.fire({ title: '변경 사항이 없습니다.', icon: 'warning' })
+        return false
+      } 
       return true
     },
     async onSubmit(){
@@ -52,9 +57,7 @@ export default {
         this.loader = true
 
         const displayName = this.$refs.displayName.value
-        const currentUser = await this.$userPut({
-          displayName
-        })
+        const currentUser = await this.$userPut({ displayName })
 
         this.$store.dispatch('user/update', currentUser)
         this.$openAlert('닉네임이 변경되었습니다.')
