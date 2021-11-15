@@ -24,7 +24,7 @@
       </RouterLink>
       <RouterLink
         class="border-2 border-solid rounded-md border-white p-1 hover:text-gray-400"
-        to="/about/myselllist">
+        to="/about/mybuylist">
         내 구매 목록
       </RouterLink>
     </div>
