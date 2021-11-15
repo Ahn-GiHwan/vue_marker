@@ -60,7 +60,7 @@ export default {
     },
     accountsObj(){
       return this.$store.state.account.accounts.reduce((acc, cur) => {
-        acc[cur.id] = cur.bankName
+        acc[cur.id] = `${cur.bankName} (잔액: ${cur.balance.toLocaleString()}원)`
         return acc
       }, {})
     },
@@ -138,14 +138,10 @@ export default {
         })
         try {
           if(accountId){
-            this.$productsBuy({
-              productId: this.id,
-              accountId
-            }) 
-            this.$swal.fire({
-              title: '구매 신청 성공!',
-              icon: 'success'
-            })
+            await this.$productsBuy({ productId: this.id, accountId }) 
+            await this.$store.dispatch('admin/updateAdmin', { update: false })
+            await this.$store.dispatch('buyList/updateBuyList', { update: false })
+            this.$swal.fire({ title: '구매 신청 성공!', icon: 'success' })
           }
         } catch (error) {
           const title = error.response.data
