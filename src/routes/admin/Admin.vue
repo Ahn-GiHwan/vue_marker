@@ -6,7 +6,7 @@
       전체 제품 보기
     </RouterLink>
     <RouterLink
-      to="/admin/selllist"
+      to="/admin/buylist"
       class="border-2 border-solid rounded-md border-white p-1 hover:text-gray-400">
       전체 판매 내역 보기
     </RouterLink>
