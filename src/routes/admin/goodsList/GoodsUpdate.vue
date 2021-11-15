@@ -166,8 +166,9 @@ export default {
           photoBase64: this.photoBase64 === this.getPhotoBase64 ? '' : this.photoBase64,
           isSoldOut: isSoldOut.checked
         })
-
+        await this.$store.diapatch('admin/updateAdmin', { update: false })
         this.$openAlert('수정이 완료되었습니다.')
+
       } catch (error) {
         const title = error.response.data
         this.$swal.fire({ title, icon: 'error' })
