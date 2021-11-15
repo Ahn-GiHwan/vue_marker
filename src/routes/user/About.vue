@@ -37,14 +37,19 @@ export default {
     currentUser(){
       return this.$store.state.user.currentUser
     },
+    isUpdateBuyList(){
+      return this.$store.state.buyList.update
+    },
   },
   async mounted(){
+    if(this.isUpdateBuyList) return
     try {
       this.loading = true
       const res = await this.$buyAllList()
-      this.$store.dispatch('buyList/updateBuyList', { allList: res })
+      await this.$store.dispatch('buyList/updateBuyList', { allList: res })
+      await this.$store.dispatch('buyList/update')
     } catch (error) {
-      console.log(error.response.data)
+      await this.$store.dispatch('buyList/update')
     } finally {
       this.loading = false
     }

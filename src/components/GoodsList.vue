@@ -1,10 +1,10 @@
 <template>
   <span>{{ goodsList.length }}개의 제품</span>
-  <section class="flex justify-start items-center w-3/4 m-auto">
+  <section class="flex flex-wrap justify-start items-center w-3/4 m-auto">
     <div
       v-for="goods in goodsList"
       :key="goods.id"
-      class="flex flex-col flex-wrap justify-center items-center w-32 border-2 border-solid border-black rounded-md m-1 cursor-pointer hover:border-blue-500"
+      class="flex flex-col flex-wrap justify-center items-center w-32 border-2 border-solid border-black rounded-md m-1 cursor-pointer hover:bg-blue-200"
       @click="clickGoods(goods.id)">
       <img
         class="w-30 h-30 rounded-full p-2"
@@ -23,8 +23,12 @@ export default {
     goodsList(){
       return this.$store.state.goods.goodsList
     },
+    isUpdate(){
+      return this.$store.state.goods.update
+    },
   },
   async mounted(){
+    if(this.isUpdate) return
     if(this.loading) return
     this.loading = true
     try {

@@ -36,6 +36,9 @@ export default {
     }
   },
   computed: {
+    isUpdate(){
+      return this.$store.state.admin.update
+    },
     goodsList(){
       return this.$store.state.admin.goodsList.length
     },
@@ -44,7 +47,9 @@ export default {
     }
   },
   async mounted(){
-    await this.getData()
+    if(!this.isUpdate){
+      await this.getData()
+    }
   },
   methods: {
     async getData(){
@@ -55,6 +60,7 @@ export default {
         await Promise.all([this.$products(), this.$sellAll()]).then(async (value) => {
           await this.$store.dispatch('admin/updateAdmin', { goodsList: value[0] })
           await this.$store.dispatch('admin/updateAdmin', { sellList: value[1] })
+          await this.$store.dispatch('admin/updateAdmin', { update: true })
         })
       } catch (error) {
         console.log(error.response.data)
