@@ -69,6 +69,8 @@ export default {
               this.$swal.fire({ title: '로그아웃이 완료되었습니다.', icon: 'success' })
               await this.$store.dispatch('user/logout')
               await this.$store.dispatch('account/logout')
+              await this.$store.dispatch('admin/logout')
+              await this.$store.dispatch('buyList/logout')
               localStorage.removeItem('token')
               this.$router.push('/')
             }
