@@ -3,7 +3,7 @@
     내 정보 수정
   </h2>
   <section class="w-full">
-    <div class="flex justify-evenly items-center w-full h-12 bg-blue-100">
+    <div class="sticky top-24 left-0 right-0 flex justify-evenly items-center w-full h-12 bg-blue-100">
       <RouterLink
         to="displayname"
         class="border-2 border-solid rounded-md border-white p-1 hover:text-gray-400">
