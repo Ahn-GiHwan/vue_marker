@@ -1,7 +1,7 @@
-import axios from 'axios'
 import auth from '~/utils/auth'
 import router from './index'
 import store from '~/store'
+import { getMyAccountInfo, getAbleBanks} from '~/utils/accountFetch'
 
 router.beforeEach(async (to) => {
   const getStorage = localStorage.getItem('token')
@@ -23,9 +23,12 @@ router.beforeEach(async (to) => {
     }
     if (!update) {
       console.log('guard getAccount')
-      const { totalBalance, accounts } = await myAccountInfo()
-      store.commit('account/assignState', {
-        totalBalance, accounts, update: true
+      await Promise.all([getMyAccountInfo(), getAbleBanks()]).then(async (value) => {
+        console.log('value',value)
+        const { totalBalance, accounts, } = value[0]
+        store.commit('account/assignState', {
+          totalBalance, accounts, ableBanks: value[1] ,update: true
+        })
       })
     }
   } else {
@@ -36,19 +39,5 @@ router.beforeEach(async (to) => {
   }
 })
 
-async function myAccountInfo () {
-  const { data } = await axios({
-    url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
-    method: 'GET',
-    headers: {
-      'content-type': 'application/json',
-      'apikey': process.env.apiKey,
-      'username': process.env.username, 
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    },
-  })
-  console.log('myAccountInfo', data)
-  return data
-}
 
 
