@@ -5,18 +5,6 @@ const category = 'account'
 export default {
   install(app, options) {
     const { endpoint, headers } = options
-    app.config.globalProperties.$ableBanks = async () => {
-      const res = await axios({
-        url: `${endpoint}/${category}/banks`,
-        method: 'GET',
-        headers: {
-          ...headers,
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-      console.log('ableBanks', res.data)
-      return res.data
-    }
     app.config.globalProperties.$myAccountInfo = async () => {
       const res = await axios({
         url: `${endpoint}/${category}`,
