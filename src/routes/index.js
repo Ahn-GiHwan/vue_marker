@@ -63,7 +63,7 @@ export default createRouter({
               component: AddAccount,
             },
             {
-              path: 'inputaccount',
+              path: 'addaccount/:code',
               name: 'inputaccount',
               component: InputAccount
             }
