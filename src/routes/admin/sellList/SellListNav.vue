@@ -6,7 +6,7 @@
     <span v-if="!allList.length"> ❌ 판매 목록이 없습니다.  </span>
     <div
       v-else
-      class="sticky top-10 right-0 left-0 flex justify-around items-center w-full h-14 bg-blue-50">
+      class="sticky top-24 right-0 left-0 flex justify-around items-center w-full h-14 bg-blue-50">
       <RouterLink
         to="/admin/selllist/allList"
         class="border-2 border-solid rounded-md border-white p-1 hover:text-gray-400">
