@@ -31,6 +31,11 @@
     </template>
     <template v-else>
       <RouterLink
+        to="/"
+        class="mx-3">
+        홈
+      </RouterLink>
+      <RouterLink
         to="/login">
         로그인
       </RouterLink>
