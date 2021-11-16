@@ -104,10 +104,8 @@ export default {
         }).then(({ isConfirmed }) => {
           if(isConfirmed) {
             this.$router.push('/login')
-            return
-          } else {
-            return
-          }
+          } 
+          return
         })
       }
       else if(this.accountsLength === 0) {
@@ -119,10 +117,8 @@ export default {
         }).then(({ isConfirmed }) => {
           if(isConfirmed) {
             this.$router.push('/about/myaccount/addaccount')
-            return 
-          } else {
-            return
           }
+          return
         })
       }else {
         const inputOptions= this.accountsObj
