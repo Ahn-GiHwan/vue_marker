@@ -1,5 +1,5 @@
 <template>
-  <section class="flex w-full justify-center items-center h-10 my-20">
+  <section class="flex w-full justify-center items-center h-40 mt-10 mb-20 bg-blue-50">
     <div class="flex flex-col">
       <div>
         <span>제목</span>
@@ -7,7 +7,7 @@
           ref="searchText"
           type="search"
           placeholder="M1 맥북"
-          class="border-black border-b-2 pl-2 outline-none" 
+          class="border-black border-b-2 pl-2 outline-none bg-transparent" 
           @keypress.enter="onSubmit" />
       </div>
       <div>
@@ -16,7 +16,7 @@
           ref="searchTags"
           type="tag"
           placeholder="(','로 구분) ex)맥북, m1"
-          class="border-black border-b-2 pl-2 outline-none" 
+          class="border-black border-b-2 pl-2 outline-none bg-transparent"
           @keypress.enter="onSubmit" />
       </div>
     </div>
