@@ -28,6 +28,9 @@ router.beforeEach(async (to) => {
         totalBalance, accounts, update: true
       })
     }
+    if (to.href.includes('login') || to.href.includes('signup')) {
+      router.push('/')
+    }
   } else {
     console.log('guard isLogin')
     if (to.href.includes('about') || to.href.includes('admin')) {
