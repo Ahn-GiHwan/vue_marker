@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+import NotFound from '~/components/NotFound'
+
 import LogIn from './LogIn'
 import SignUp from './SignUp'
 import Home from './Home'
@@ -63,7 +66,7 @@ export default createRouter({
               component: AddAccount,
             },
             {
-              path: 'inputaccount',
+              path: 'addaccount/:code',
               name: 'inputaccount',
               component: InputAccount
             }
@@ -150,6 +153,10 @@ export default createRouter({
       path: '/goods/:id',
       name: 'goodsInfo',
       component: GoodsInfo
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      component: NotFound
     },
   ]
 })

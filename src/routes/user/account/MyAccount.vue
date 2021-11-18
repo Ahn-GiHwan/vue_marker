@@ -11,11 +11,11 @@
     </h3>
     <ul
       v-if="accounts.length > 0"
-      class="flex justify-around mt-3 w-1/2">
+      class="flex flex-wrap justify-around mt-3 w-1/2">
       <li
         v-for="account in accounts"
         :key="account.id"
-        class="flex flex-col items-center border-2 border-solid p-2 rounded">
+        class="flex flex-col items-center border-2 border-solid p-2 m-2 rounded">
         <span>{{ account.bankName }}</span>
         <span>{{ account.balance.toLocaleString() + '원' }}</span>
         <button
@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { getAbleBanks } from '~/utils/accountFetch'
+
 export default {
   data(){
     return {
@@ -80,12 +82,19 @@ export default {
       })
       
       if(JSON.parse(value)) {
-        await this.$deleteAccount({
+        const res = await this.$deleteAccount({
           accountId,
           signature: true
         })
-        this.$openAlert('해지가 완료되었습니다.')
-        await this.getAccountData()
+        if(res) {
+          this.$openAlert('해지가 완료되었습니다.')
+          this.$store.commit('account/deleteAccount', accountId)
+          const ableBanks = await getAbleBanks()
+          this.$store.dispatch('account/updateAccountInfo', { ableBanks })
+        }
+        else {
+          this.$swal.fire({ title: '해지 오류', icon: 'error' })
+        }
       } else {
         this.$openAlert('❗️ 동의 시 해지가 됩니다.')
       }

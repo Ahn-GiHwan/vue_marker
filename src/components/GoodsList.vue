@@ -1,5 +1,5 @@
 <template>
-  <span>{{ goodsList.length }}개의 제품</span>
+  <span class="ml-20 font-bold text-lg">{{ goodsList.length }}개의 제품</span>
   <section class="flex flex-wrap justify-start items-center w-3/4 m-auto">
     <div
       v-for="goods in goodsList"

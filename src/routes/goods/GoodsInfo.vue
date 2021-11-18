@@ -33,6 +33,11 @@
         class="absolute inset-0 flex justify-center items-center bg-gray-200 bg-opacity-50">
         <span class="text-red-600 text-9xl">품절</span>
       </div>
+      <button
+        class="absolute top-2 right-4 border border-solid rounded-xl p-1 bg-red-300"
+        @click="$router.back()">
+        뒤로가기
+      </button>
     </div>
   </section>
 </template>
@@ -104,10 +109,8 @@ export default {
         }).then(({ isConfirmed }) => {
           if(isConfirmed) {
             this.$router.push('/login')
-            return
-          } else {
-            return
-          }
+          } 
+          return
         })
       }
       else if(this.accountsLength === 0) {
@@ -119,10 +122,8 @@ export default {
         }).then(({ isConfirmed }) => {
           if(isConfirmed) {
             this.$router.push('/about/myaccount/addaccount')
-            return 
-          } else {
-            return
           }
+          return
         })
       }else {
         const inputOptions= this.accountsObj
