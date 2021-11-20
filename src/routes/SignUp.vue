@@ -74,7 +74,8 @@
 
 <script>
 import defaultImage from '~/utils/altImage'
-import { emptyCheck } from '~/utils/emptyCheck'
+import emptyCheck from '~/utils/emptyCheck'
+import specialStringCheck from '~/utils/specialStringCheck'
 
 export default {
   data(){
@@ -132,6 +133,9 @@ export default {
         return false
       } else if(emptyCheck(email.value)) {
         this.$swal.fire({ title: '이메일에 공백은 안됩니다.', icon: 'warning' })
+        return false
+      } else if(specialStringCheck(email.value)) {
+        this.$swal.fire({ title: '이메일에 특수문자는 안됩니다.', icon: 'warning' })
         return false
       } else if(!select.value) {
         this.$swal.fire({ title: '이메일을 선택해 주세요.', icon: 'warning' })
