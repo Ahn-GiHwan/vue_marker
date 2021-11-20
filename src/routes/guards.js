@@ -10,16 +10,21 @@ router.beforeEach(async (to) => {
 
   if (getStorage) {
     if (!currentUser) {
-      console.log('guard getUser')
-      const user = await auth()
-
-      store.commit('user/assignState', {
-        currentUser: user
-      })
-      const { currentUser } = store.state.user
-      if (currentUser.email !== process.env.admin && to.href.includes('admin')) {
-        router.push('/about')
+      try {
+        const user = await auth()
+        store.commit('user/assignState', {
+          currentUser: user
+        })
+        const { currentUser } = store.state.user
+        if (currentUser.email !== process.env.admin && to.href.includes('admin')) {
+          router.push('/about')
+        }
+      } catch (error) {
+        localStorage.removeItem('token')
+        router.push('/')
       }
+      console.log('guard getUser')
+      
     }
     if (!update) {
       console.log('guard getAccount')
