@@ -2,7 +2,6 @@ export default {
   namespaced: true,
   state: () => ({
     goodsList: [],
-    update: false
   }),
   mutations: {
     assignState(state, payload) {
@@ -15,11 +14,7 @@ export default {
     searchGoodsList({ commit }, goodsList) {
       commit('assignState', {
         goodsList,
-        update: true
       })
     },
-    update({ state, commit }) {
-      commit('assignState', { update: !state.update })
-    }
   }
 }
