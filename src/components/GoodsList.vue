@@ -28,7 +28,6 @@ export default {
     },
   },
   async mounted(){
-    if(this.isUpdate) return
     if(this.loading) return
     this.loading = true
     try {
