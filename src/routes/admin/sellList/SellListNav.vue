@@ -43,6 +43,21 @@ export default {
     allList(){
       return this.$store.state.admin.sellList
     }
+  },
+  async mounted(){
+    try {
+      if(this.loading) return 
+      this.loading = true
+
+      const sellList = await this.$sellAll()
+      await this.$store.dispatch('admin/updateAdmin', { sellList })
+    } catch (error) {
+      console.log(error.response.data)
+      this.$store.dispatch('admin/goodsListNull')
+      this.$store.dispatch('admin/sellListNull')
+    } finally {
+      this.loading = false
+    }
   }
 }
 </script>
