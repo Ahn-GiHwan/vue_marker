@@ -23,13 +23,9 @@ router.beforeEach(async (to) => {
         localStorage.removeItem('token')
         router.push('/')
       }
-      console.log('guard getUser')
-      
     }
     if (!update) {
-      console.log('guard getAccount')
       await Promise.all([getMyAccountInfo(), getAbleBanks()]).then(async (value) => {
-        console.log('value',value)
         const { totalBalance, accounts, } = value[0]
         store.commit('account/assignState', {
           totalBalance, accounts, ableBanks: value[1] ,update: true
@@ -40,7 +36,6 @@ router.beforeEach(async (to) => {
       router.push('/')
     }
   } else {
-    console.log('guard isLogin')
     if (to.href.includes('about') || to.href.includes('admin')) {
       router.push('/')
     }
