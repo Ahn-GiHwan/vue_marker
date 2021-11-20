@@ -9,9 +9,8 @@ export default {
         const res = await axios({
           url: `${endpoint}/${category}`,
           method: 'GET',
-          headers: adminHeader,
+        headers: adminHeader,
         })
-        console.log('products', res.data)
         return res.data        
     }
     app.config.globalProperties.$sellAll = async () => {
@@ -20,7 +19,6 @@ export default {
           method: 'GET',
           headers:adminHeader,
         })
-        console.log('sellAll', res.data)
         return res.data
     }
     app.config.globalProperties.$addProducts = async (data) => {
@@ -30,7 +28,6 @@ export default {
           headers: adminHeader,
           data
         })
-        console.log('addProducts', res.data)
         return res.data
     }
     app.config.globalProperties.$productsPut = async (id, data) => {
@@ -40,7 +37,6 @@ export default {
           headers: adminHeader,
           data
         })
-        console.log('productsPut', res.data)
         return res.data
     }
   }

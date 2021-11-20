@@ -11,7 +11,6 @@ export default {
           method: 'GET',
           headers,
         })
-        console.log('productInfo', res.data)
         return res.data        
     }
     app.config.globalProperties.$productsSearch = async (data) => {
@@ -21,7 +20,6 @@ export default {
           headers,
           data
         })
-        console.log('productsSearch', res.data)
         return res.data
     }
     app.config.globalProperties.$productsBuy  = async (data) => {
@@ -34,7 +32,6 @@ export default {
           },
           data
         })
-        console.log('productsBuy', res.data)
         return res.data
     }
     app.config.globalProperties.$productsCancel = async (data) => {
@@ -47,7 +44,6 @@ export default {
           },
           data
         })
-        console.log('productsCancel', res.data)
         return res.data
     }
     app.config.globalProperties.$productsOk = async (data) => {
@@ -60,7 +56,6 @@ export default {
           },
           data
         })
-        console.log('productsOk', res.data)
         return res.data
     }
     app.config.globalProperties.$buyAllList = async () => {
@@ -72,7 +67,6 @@ export default {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
           },
         })
-        console.log('buyAllList', res.data)
         return res.data
     }
     app.config.globalProperties.$buyInfo = async (data) => {
@@ -85,7 +79,6 @@ export default {
           },
           data
         })
-        console.log('sellInfo', res.data)
         return res.data
     }
   }

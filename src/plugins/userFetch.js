@@ -10,7 +10,6 @@ export default {
         headers,
         data
       })
-      console.log('signup', res.data)
       return res.data        
     }
     app.config.globalProperties.$login = async (data) => {
@@ -20,7 +19,6 @@ export default {
         headers,
         data
       })
-      console.log('login', res.data)
       return res.data
     }
     app.config.globalProperties.$logout = async () => {
@@ -32,7 +30,6 @@ export default {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
       })
-      console.log('logout', res.data)
       return res.data
     }
     app.config.globalProperties.$userPut = async (data) => {
@@ -45,7 +42,6 @@ export default {
         },
         data
       })
-      console.log('userPut', res.data)
       return res.data
     }
   }

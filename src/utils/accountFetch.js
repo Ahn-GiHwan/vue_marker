@@ -11,7 +11,6 @@ export const getMyAccountInfo = async () => {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     },
   })
-  console.log('myAccountInfo', data)
   return data
 }
 
@@ -26,6 +25,5 @@ export const getAbleBanks = async () =>{
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     }
   })
-  console.log('ableBanks', data)
   return data
 }

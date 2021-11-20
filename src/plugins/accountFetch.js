@@ -14,7 +14,6 @@ export default {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
       })
-      console.log('myAccountInfo', res.data)
       return res.data
     }
     app.config.globalProperties.$connectAccount = async (data) => {
@@ -27,7 +26,6 @@ export default {
         },
         data
       })
-      console.log('connectAccount', res.data)
       return res.data
     }
     app.config.globalProperties.$deleteAccount = async (data) => {
@@ -40,7 +38,6 @@ export default {
         },
         data
       })
-      console.log('deleteAccount', res.data)
       return res.data
     }
   }
