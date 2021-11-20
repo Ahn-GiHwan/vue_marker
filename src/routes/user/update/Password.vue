@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { emptyCheck } from '~/utils/emptyCheck'
+import emptyCheck from '~/utils/emptyCheck'
 
 export default {
 data(){
