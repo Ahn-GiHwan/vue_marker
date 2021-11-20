@@ -21,17 +21,24 @@
         type="password" 
         @keypress.enter="onSubmit" />
     </div>
-    <button
-      class="border-2 border-solid outline-none p-3 rounded-md bg-blue-300 text-white"
-      @click="onSubmit">
-      로그인하기
-    </button>
+    <div class="mt-5">
+      <button
+        class="border-2 border-solid outline-none p-3 rounded-md bg-blue-300 text-white"
+        @click="onSubmit">
+        로그인
+      </button>
+      <button
+        class="border-2 border-solid outline-none p-3 rounded-md bg-blue-300 text-white"
+        @click="$router.push('/signup')">
+        회원가입
+      </button>
+    </div>
     <Loader :loading="loading" />
   </section>
 </template>
 
 <script>
-import { emptyCheck } from '~/utils/emptyCheck'
+import emptyCheck from '~/utils/emptyCheck'
 
 export default {
   data(){
