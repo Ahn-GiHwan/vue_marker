@@ -21,18 +21,16 @@
         type="password" 
         @keypress.enter="onSubmit" />
     </div>
-    <div class="mt-5">
-      <button
-        class="border-2 border-solid outline-none p-3 rounded-md bg-blue-300 text-white"
-        @click="onSubmit">
-        로그인
-      </button>
-      <button
-        class="border-2 border-solid outline-none p-3 rounded-md bg-blue-300 text-white"
-        @click="$router.push('/signup')">
-        회원가입
-      </button>
-    </div>
+    <button
+      class="border-2 border-solid outline-none p-3 my-2 rounded-md bg-blue-300 text-white"
+      @click="onSubmit">
+      로그인
+    </button>
+    <a
+      class="outline-none p-1 rounded-m cursor-pointer underline"
+      @click="$router.push('/signup')">
+      회원가입하러 가기
+    </a>
     <Loader :loading="loading" />
   </section>
 </template>
